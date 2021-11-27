@@ -1,0 +1,62 @@
+.talents
+  .container
+    #profile-list
+      / .row.mb-3
+      /   .col-sm-8
+      /     button.btn.btn-light.sort.mr-1 data-sort="name"
+      /       i.fas.fa-sort.fa-fw.mr-1
+      /       | Sort by Name
+      /     button.btn.btn-light.sort data-sort="profession"
+      /       i.fas.fa-sort.fa-fw.mr-1
+      /       | Sort by Profession
+      .search
+        input.form-control.search.mx-auto.form-control-lg type="text" name="search" placeholder="Search e.g. ios, css, full-time..."
+      #loading.spinner
+      .card-columns.profile-list.list
+        script#template data-collection="Talents" type="text/x-handlebars-template"
+          | {{#elements}}
+          .card.profile
+            .thumb.lazy data-src="{{coverImageUrl}}"
+              .filter
+              img.lazy data-src="{{avatarUrl}}" alt="{{name}}"
+            .card-body
+              h5.name.mb-0 = "{{name}}"
+              p.small: em.profession = "{{profession}}"
+              p.small.text-muted.mb-0 = "{{description}}"
+            ul.list-group.list-group-flush
+              | {{#skills}}
+              li.list-group-item
+                span.list-label Skills
+                p.mb-0.skill = "{{skills}}"
+              | {{/skills}}
+              | {{#availability}}
+              li.list-group-item
+                span.list-label Availability
+                p.availability.mb-0 = "{{availability}}"
+              | {{/availability}}
+            .card-body
+              .socials
+                | {{#website}}
+                a.link.homepage.d-block href="//{{websiteClean}}?ref=techie.my" target="_blank"
+                  i.fas.fa-home.fa-fw
+                  span.ml-1 = "{{websiteClean}}"
+                | {{/website}}
+                | {{#code}}
+                a.link.code.d-block href="//{{codeClean}}" target="_blank"
+                  i.fab.fa-github.fa-fw
+                  span.ml-1 = "{{codeClean}}"
+                | {{/code}}
+                | {{#twitter}}
+                a.link.twitter.d-block href="//twitter.com/{{twitterClean}}" target="_blank"
+                  i.fab.fa-twitter.fa-fw
+                  span.ml-1 = "{{twitterClean}}"
+                | {{/twitter}}
+                | {{#email}}
+                span.link.email.d-block
+                  i.fas.fa-at.fa-fw
+                  span.ml-1.text-secondary = "{{emailObfuse}}"
+                | {{/email}}
+            span.index.d-none = "{{index}}"
+          | {{/elements}}
+      .alert.alert-warning
+        <strong>🙅‍♀️</strong> Do not engage in any type of soliciting, bulk messaging, or spamming from this list. Go through their profile and see their availability, skills and position, and engage them personally if they fit your requirements.
